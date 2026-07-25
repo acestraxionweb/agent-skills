@@ -1,80 +1,169 @@
-# Skill: [Name]
+# Skill: <skill-name>
 
 ## Metadata
-- **Name**: [skill-name]
-- **Version**: [0.1.0]
-- **Author**: [your-name]
-- **Tags**: [tag1, tag2, tag3]
-- **Platforms**: [openwebui, mcp, openai, claude]
 
-## Description
+| Field | Value |
+|-------|-------|
+| **Domain** | <domain> |
+| **Name** | <skill-name> |
+| **Version** | 1.0.0 |
+| **Author** | <your-name> |
+| **Platforms** | openwebui, mcp, openai, claude |
 
-[What does this skill do? Write 1-2 sentences describing the skill's purpose and value.]
+---
 
-## Trigger Patterns
+## WHAT
 
-Activate this skill when the user:
-- [Pattern 1: describes when to activate]
-- [Pattern 2: another activation scenario]
-- [Pattern 3: edge case trigger]
+### Capability
 
-## Instructions
+<!-- What can this skill do? List all capabilities. -->
 
-### [Operation 1 Name]
-1. [Step 1 of this operation]
-2. [Step 2 of this operation]
-3. [Step 3 of this operation]
+- 
+- 
+- 
 
-### [Operation 2 Name]
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
+### Inputs
 
-## Input Format
+<!-- What information does the skill need to work? -->
 
-```json
-{
-  "action": "operation-1 | operation-2",
-  "params": {},
-  "options": {}
-}
+| Input | Type | Required | Description |
+|-------|------|----------|-------------|
+| | | | |
+
+### Outputs
+
+<!-- What does the skill produce? -->
+
+| Output | Type | Description |
+|--------|------|-------------|
+| | | |
+
+---
+
+## WHY
+
+### Business Purpose
+
+<!-- Why does this skill exist? What problem does it solve? -->
+
+### Value
+
+<!-- What is the benefit of using this skill? -->
+
+- 
+- 
+- 
+
+---
+
+## WHEN
+
+### Activate when:
+
+<!-- List trigger conditions. When should the agent use this skill? -->
+
+- 
+- 
+- 
+
+### Do NOT activate when:
+
+<!-- List anti-triggers. When should the agent avoid this skill? -->
+
+- 
+- 
+- 
+
+---
+
+## WHERE
+
+### Systems
+
+<!-- What platforms or tools does this skill operate on? -->
+
+- 
+- 
+
+### Domain
+
+<!-- What business or technical domain? -->
+
+- 
+
+### Data Location
+
+<!-- Where does the data this skill reads/writes live? -->
+
+- 
+
+---
+
+## HOW
+
+### Workflow
+
+<!-- Step-by-step execution procedure. -->
+
+1. 
+2. 
+3. 
+4. 
+5. 
+
+### Tools Required
+
+```yaml
+tools:
+  - <tool-1>
+  - <tool-2>
 ```
 
-## Output Format
+### Decision Logic
 
-```json
-{
-  "status": "success | error",
-  "data": {},
-  "message": "Human-readable summary"
-}
+<!-- When should the agent take different paths? -->
+
+```
+IF <condition-1>
+    -> <action-1>
+
+IF <condition-2>
+    -> <action-2>
+
+DEFAULT
+    -> <default-action>
 ```
 
-## Examples
-
-### Example 1: [Scenario Name]
-**User**: "[Natural language request]"
-**Agent Action**:
-1. [What the agent does first]
-2. [What the agent does next]
-3. [Expected result]
-
-### Example 2: [Scenario Name]
-**User**: "[Natural language request]"
-**Agent Action**:
-1. [What the agent does first]
-2. [What the agent does next]
-3. [Expected result]
+---
 
 ## Constraints
 
-- [Limitation 1]
-- [Limitation 2]
-- [Limitation 3]
+<!-- What must the skill NOT do? List hard rules. -->
 
-## Platform-Specific Notes
+- Do not 
+- Do not 
+- Do not 
 
-- **Open WebUI**: [Configuration instructions]
-- **MCP**: [Configuration instructions]
-- **OpenAI**: [Configuration instructions]
-- **Claude**: [Configuration instructions]
+---
+
+## Example 1
+
+**Input:** <user request>
+
+**Expected:**
+
+1. <step-1>
+2. <step-2>
+3. <step-3>
+
+---
+
+## Example 2
+
+**Input:** <user request>
+
+**Expected:**
+
+1. <step-1>
+2. <step-2>
+3. <step-3>
