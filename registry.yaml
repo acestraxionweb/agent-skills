@@ -1,121 +1,49 @@
 # Agent Skills Registry
-# Machine-readable inventory of all available skills
-# Updated: 2026-07-25
+# Machine-readable index of all skills and agents
+# Last updated: 2026-07-25
 
 metadata:
-  version: 0.1.0
+  version: "1.0.0"
   repo: acestraxionweb/agent-skills
-  maintained_by: acestraxionweb
-  license: open-source
+  standard: "WHAT/WHY/WHERE/WHEN/HOW"
 
 skills:
-  # ─── Notion Integration ───────────────────────────────────
-  - name: notion
-    description: "Read, create, update, and search Notion pages, databases, and blocks"
-    author: acestraxionweb
-    version: 0.1.0
-    tags: [productivity, knowledge-base, documents, databases]
+  # --- Notion ---
+  - domain: notion
+    name: ticket-management
+    description: "Create, track, and manage operational tasks and tickets"
+    version: "1.0.0"
+    file: skills/notion/ticket-management/SKILL.md
     platforms: [openwebui, mcp, openai, claude]
-    skill_path: skills/notion/SKILL.md
-    status: active
-    triggers:
-      - user mentions notion
-      - user wants to read/write to a notion page
-      - user wants to query a notion database
-      - creating or updating documentation in notion
-    capabilities:
-      - search_notion_pages
-      - read_page_content
-      - create_page
-      - update_page
-      - query_database
-      - create_database_entry
-      - list_recent_pages
 
-  # ─── GitHub Operations ────────────────────────────────────
-  - name: github
-    description: "Manage repositories, issues, pull requests, and code on GitHub"
-    author: acestraxionweb
-    version: 0.1.0
-    tags: [development, version-control, code-management, collaboration]
+  - domain: notion
+    name: documentation
+    description: "Create MOP, SOP, test plans, and technical documentation"
+    version: "1.0.0"
+    file: skills/notion/documentation/SKILL.md
     platforms: [openwebui, mcp, openai, claude]
-    skill_path: skills/github/SKILL.md
-    status: active
-    triggers:
-      - user mentions github
-      - user wants to manage a repository
-      - user wants to create or review a pull request
-      - user wants to work with issues
-    capabilities:
-      - search_repositories
-      - create_repository
-      - create_issue
-      - create_pull_request
-      - read_file_contents
-      - commit_files
-      - list_branches
 
-  # ─── Agent Memory ─────────────────────────────────────────
-  - name: memory
-    description: "Manage agent memory: short-term context, long-term knowledge, and retrieval"
-    author: acestraxionweb
-    version: 0.1.0
-    tags: [memory, context-management, knowledge-retrieval, persistence]
+  - domain: notion
+    name: knowledge-base
+    description: "Capture and retrieve reusable knowledge and decision records"
+    version: "1.0.0"
+    file: skills/notion/knowledge-base/SKILL.md
     platforms: [openwebui, mcp, openai, claude]
-    skill_path: skills/memory/SKILL.md
-    status: active
-    triggers:
-      - user says remember this
-      - user asks what do you remember about
-      - agent needs to recall previous context
-      - user wants to store or retrieve information
-    capabilities:
-      - store_memory
-      - retrieve_memory
-      - search_memory
-      - list_memories
-      - delete_memory
-      - categorize_memory
 
-  # ─── Agent Builder ────────────────────────────────────────
-  - name: agent-builder
-    description: "Dynamically construct, configure, and orchestrate AI agents and workflows"
-    author: acestraxionweb
-    version: 0.1.0
-    tags: [agent-creation, orchestration, workflow, automation]
+  # --- GitHub ---
+  - domain: github
+    name: repo-management
+    description: "Repository operations, code management, and collaboration"
+    version: "1.0.0"
+    file: skills/github/repo-management/SKILL.md
     platforms: [openwebui, mcp, openai, claude]
-    skill_path: skills/agent-builder/SKILL.md
-    status: active
-    triggers:
-      - user wants to create an agent
-      - user wants to build a workflow
-      - user needs to configure agent behavior
-      - user wants to chain multiple skills together
-    capabilities:
-      - define_agent
-      - configure_system_prompt
-      - add_tools_to_agent
-      - create_workflow
-      - execute_workflow
-      - monitor_agent_status
 
-platforms:
-  - name: openwebui
-    description: "Open WebUI integration adapter"
-    adapter_path: platforms/openwebui/
-    status: supported
+  # --- Memory ---
+  - domain: memory
+    name: context-management
+    description: "Persistent memory across sessions - store, retrieve, search"
+    version: "1.0.0"
+    file: skills/memory/context-management/SKILL.md
+    platforms: [openwebui, mcp, openai, claude]
 
-  - name: mcp
-    description: "Model Context Protocol adapter"
-    adapter_path: platforms/mcp/
-    status: supported
-
-  - name: openai
-    description: "OpenAI Agents SDK adapter"
-    adapter_path: platforms/openai/
-    status: supported
-
-  - name: claude
-    description: "Anthropic Claude adapter"
-    adapter_path: platforms/claude/
-    status: supported
+agents: []
