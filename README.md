@@ -1,79 +1,77 @@
-# 🧠 Agent Skills
+# Agent Skills
 
-A portable, platform-agnostic skill registry for AI agents. Skills are reusable capabilities that can be shared across different agent systems — from Open WebUI to MCP, OpenAI, Claude, and beyond.
+Source of truth for agent skills, agents, and capability definitions.
 
-## 🎯 What Are Agent Skills?
-
-Agent Skills are modular, self-contained capability definitions that teach AI agents how to perform specific tasks. Each skill is defined in a standard `SKILL.md` format that can be:
-
-- **Shared** across different agent platforms
-- **Discovered** via the machine-readable `registry.yaml`
-- **Extended** by anyone via pull request
-- **Adapted** to specific platforms via adapter wrappers
-
-## 📁 Repository Structure
-
-```
-agent-skills/
-├── README.md              # This file
-├── registry.yaml          # Machine-readable skill inventory
-├── CONTRIBUTING.md        # How to add new skills
-├── CHANGELOG.md           # Version history
-│
-├── skills/                # Canonical skill definitions
-│   ├── notion/            # Notion integration skill
-│   ├── github/            # GitHub operations skill
-│   ├── memory/            # Agent memory management skill
-│   └── agent-builder/     # Agent construction skill
-│
-├── platforms/             # Platform-specific adapters
-│   ├── openwebui/         # Open WebUI adapter
-│   ├── mcp/               # Model Context Protocol adapter
-│   ├── openai/            # OpenAI agents adapter
-│   └── claude/            # Claude agents adapter
-│
-└── templates/             # Templates for new skills
-    ├── SKILL.template.md
-    └── agent.template.yaml
-```
-
-## 🚀 Quick Start
-
-### For Agent Users
-
-1. Browse skills in the [`skills/`](./skills/) directory
-2. Check [`registry.yaml`](./registry.yaml) for a machine-readable overview
-3. Follow the platform-specific guides in [`platforms/`](./platforms/)
-
-### For Skill Authors
-
-1. Read [`CONTRIBUTING.md`](./CONTRIBUTING.md)
-2. Use the template in [`templates/SKILL.template.md`](./templates/SKILL.template.md)
-3. Submit a pull request!
-
-## 📋 Skill Registry
-
-The [`registry.yaml`](./registry.yaml) file provides a machine-readable inventory of all skills:
-
-```bash
-# Example: list all skills and their descriptions
-python -c "import yaml; [print(f'{s[\"name\"]}: {s[\"description\"]}') for s in yaml.safe_load(open('registry.yaml'))['skills']]"
-```
-
-## 🌐 Platform Support
-
-| Platform | Status | Adapter Location |
-|----------|--------|------------------|
-| Open WebUI | ✅ Supported | [`platforms/openwebui/`](./platforms/openwebui/) |
-| MCP | ✅ Supported | [`platforms/mcp/`](./platforms/mcp/) |
-| OpenAI Agents | ✅ Supported | [`platforms/openai/`](./platforms/openai/) |
-| Claude | ✅ Supported | [`platforms/claude/`](./platforms/claude/) |
-| Coding Agents | ✅ Native | Skills work directly |
-
-## 📄 License
-
-This project is open source. See the repository for license details.
+Every skill follows the **WHAT / WHY / WHERE / WHEN / HOW** framework — turning each skill from a prompt file into a capability definition an agent can route to.
 
 ---
 
-**Built with ❤️ for the AI agent community**
+## Structure
+
+```
+agent-skills/
+├── skills/           ← Canonical skill definitions
+├── agents/           ← Agent configurations using skills
+├── templates/        ← Templates for new skills and agents
+├── registry.yaml     ← Machine-readable index
+└── CONTRIBUTING.md   ← How to add new skills
+```
+
+---
+
+## Skills
+
+| Skill | Domain | Description |
+|-------|--------|-------------|
+| `notion/ticket-management` | Notion | Create, track, manage operational tasks |
+| `notion/documentation` | Notion | MOP, SOP, KB, and technical documentation |
+| `notion/knowledge-base` | Notion | Capture and retrieve reusable knowledge |
+| `github/repo-management` | GitHub | Repository and code operations |
+| `memory/context-management` | Memory | Persistent agent memory across sessions |
+
+---
+
+## Agents
+
+Agents are configurations that combine skills into purpose-built assistants.
+
+| Agent | Skills Used | Purpose |
+|-------|-------------|---------|
+| *(define as needed)* | | |
+
+---
+
+## Quick Start
+
+**Use a skill:** Reference the `SKILL.md` in your agent system prompt or tool config.
+
+**Add a skill:** Follow `CONTRIBUTING.md` — copy the template, fill the 5W matrix, submit.
+
+---
+
+## The 5W Framework
+
+Every skill MUST answer five questions:
+
+| Question | Purpose |
+|----------|---------|
+| **WHAT** | Can the agent do? Inputs, outputs, capabilities |
+| **WHY** | Should this skill exist? Business value |
+| **WHEN** | Should the agent activate it? Triggers and anti-triggers |
+| **WHERE** | Does it operate? Systems, domains, environments |
+| **HOW** | Does it execute? Steps, tools, decision logic |
+
+This eliminates **skill ambiguity** — the agent knows exactly when to load a skill, what it can do, and when NOT to use it.
+
+---
+
+## Templates
+
+- **New skill:** Copy `templates/SKILL.template.md` into `skills/<domain>/<skill-name>/SKILL.md`
+- **New agent:** Copy `templates/agent.template.yaml` into `agents/<agent-name>.yaml`
+
+---
+
+## License
+
+MIT.
