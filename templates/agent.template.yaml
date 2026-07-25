@@ -1,0 +1,78 @@
+# Agent Template
+# Copy this file and customize to define a new agent
+
+agent:
+  # ─── Basic Info ──────────────────────────────────────
+  name: "my-agent"
+  description: "What this agent does in one sentence"
+  version: "0.1.0"
+  author: "your-username"
+  
+  # ─── System Prompt ───────────────────────────────────
+  # Define the agent's personality, role, and behavior
+  system_prompt: |
+    You are a [role] that [primary purpose].
+    
+    Your capabilities include:
+    - [capability-1]: [description]
+    - [capability-2]: [description]
+    
+    You should:
+    1. [positive behavior]
+    2. [positive behavior]
+    
+    You should NOT:
+    1. [negative behavior / constraint]
+    2. [negative behavior / constraint]
+  
+  # ─── Skills ──────────────────────────────────────────
+  # List of skill names from the registry this agent can use
+  skills:
+    - name: skill-name
+      config:
+        # Skill-specific configuration
+        key: value
+  
+  # ─── Tools ────────────────────────────────────────────
+  # External tools the agent can call
+  tools:
+    - name: tool-name
+      type: api          # api | function | mcp | custom
+      description: "What this tool does"
+      config:
+        endpoint: "https://api.example.com/v1"
+        method: GET
+        headers: {}
+  
+  # ─── Constraints ──────────────────────────────────────
+  constraints:
+    - "Never [do something dangerous]"
+    - "Always [safety behavior]"
+    - "Require human approval for [sensitive action]"
+  
+  # ─── Model Settings ──────────────────────────────────
+  model:
+    provider: openai       # openai | anthropic | custom
+    name: gpt-4o           # Model name
+    temperature: 0.7
+    max_tokens: 4096
+    top_p: 1.0
+  
+  # ─── Memory ──────────────────────────────────────────
+  memory:
+    enabled: true
+    type: semantic         # semantic | key-value | none
+    max_entries: 1000
+    retention_days: 90
+  
+  # ─── Metadata ────────────────────────────────────────
+  tags: [category1, category2]
+  platforms: [openwebui, mcp, openai, claude]
+  
+  # ─── Workflow Integration ────────────────────────────
+  # How this agent connects to other agents
+  workflow:
+    can_be_called_by: [manager-agent]
+    calls: []
+    on_error: retry        # retry | abort | fallback
+    timeout: 300           # seconds
