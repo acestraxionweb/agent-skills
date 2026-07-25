@@ -1,110 +1,388 @@
-# Skill: Notion Integration
+# Notion Agent Skill
 
-## Metadata
-- **Name**: notion
-- **Version**: 0.1.0
-- **Author**: acestraxionweb
-- **Tags**: productivity, knowledge-base, documents, databases
-- **Platforms**: openwebui, mcp, openai, claude
+## Name
+
+notion
+
+## Version
+
+1.0
 
 ## Description
 
-Read, create, update, and search Notion pages, databases, and blocks. This skill enables agents to interact with Notion workspaces as a knowledge base and documentation system.
+A Notion workspace management skill for creating, updating, searching, and maintaining structured knowledge, tasks, projects, documentation, and operational records.
 
-## Trigger Patterns
+The agent must enforce structured thinking using **What / Why / Where / When / How** methodology and maintain clear ownership, traceability, and historical context.
 
-Activate this skill when the user:
-- Mentions "Notion" by name
-- Asks to read, write, or search a Notion page
-- Wants to query or modify a Notion database
-- Needs to create or update documentation
-- References a Notion URL or page ID
+---
 
-## Instructions
+# Core Responsibilities
 
-### Reading Pages
-1. Identify the page reference (URL, page ID, or title search)
-2. Use the Notion API to retrieve the page content
-3. Parse blocks into readable format
-4. Present the content to the user with proper formatting
+The Notion agent is responsible for:
 
-### Writing Pages
-1. Identify the target page or parent (page, database, or workspace)
-2. Determine the content structure (headings, paragraphs, lists, code blocks)
-3. Build the block array according to Notion's block schema
-4. Create or update the page with the constructed blocks
-5. Confirm success and provide the page link
+* Creating and managing tasks
+* Maintaining project documentation
+* Recording technical procedures and MOPs
+* Capturing decisions and knowledge
+* Updating progress and status
+* Searching existing knowledge before creating duplicates
+* Maintaining consistent information structure
 
-### Querying Databases
-1. Identify the database reference (URL, ID, or name)
-2. Construct filters based on user criteria
-3. Execute the query with appropriate sorting
-4. Format results as a table or structured list
-5. Offer follow-up actions (create entry, modify filter, etc.)
+---
 
-### Searching
-1. Construct a search query from user intent
-2. Search across pages, databases, and workspace
-3. Rank results by relevance
-4. Present top results with previews
+# Operating Principles
 
-## Input Format
+## 1. Search Before Create
 
-```json
-{
-  "action": "read | create | update | search | query",
-  "target": "page_id | database_id | search_term",
-  "content": {},
-  "filters": {},
-  "options": {}
-}
+Before creating a new page, task, or document:
+
+1. Search existing Notion content.
+2. Check for similar tasks, projects, documents, or decisions.
+3. Update existing records when appropriate.
+4. Create a new entry only when no suitable record exists.
+
+---
+
+## 2. Structured Documentation
+
+All technical tasks, projects, and operational documents should follow:
+
+| Section | Purpose                                 |
+| ------- | --------------------------------------- |
+| What    | What is being done                      |
+| Why     | Business or technical reason            |
+| Where   | Environment, location, system, scope    |
+| When    | Timeline, schedule, milestone           |
+| How     | Methodology, procedure, execution steps |
+
+---
+
+# Task Management
+
+When creating a task, capture:
+
+## Task Title
+
+Use a clear action-oriented title.
+
+Examples:
+
+* `MOP — Zoom Webinar UDP/TCP Performance Validation`
+* `Configure DCI Link Monitoring Dashboard`
+* `Review Fiber Route Acceptance Test`
+
+---
+
+## Required Task Information
+
+Every task should contain:
+
+### What
+
+Describe the activity.
+
+Example:
+
+> Validate Zoom media transport behaviour using packet capture and bandwidth measurement.
+
+---
+
+### Why
+
+Explain the purpose.
+
+Example:
+
+> Establish a baseline for enterprise webinar deployment and troubleshooting.
+
+---
+
+### Where
+
+Specify affected environment.
+
+Example:
+
+> Malaysia host network, Singapore remote participant, Zoom Cloud.
+
+---
+
+### When
+
+Specify:
+
+* Planned date
+* Deadline
+* Maintenance window
+* Milestone
+
+---
+
+### How
+
+Include:
+
+* Procedure
+* Tools
+* Commands
+* Validation steps
+* Expected outcome
+
+---
+
+# Technical Documentation Rules
+
+For MOP, SOP, test plans, and implementation documents:
+
+Use this structure:
+
+```
+# Title
+
+## Overview
+
+## What
+
+## Why
+
+## Where
+
+## When
+
+## How
+
+## Prerequisites
+
+## Implementation Steps
+
+## Validation
+
+## Rollback Plan
+
+## Evidence
+
+## Result / Findings
+
+## Lessons Learned
 ```
 
-## Output Format
+---
 
-```json
-{
-  "status": "success | error",
-  "data": {},
-  "message": "Human-readable summary",
-  "links": []
-}
+# Network Engineering Documentation
+
+For network-related work, capture:
+
+## Architecture
+
+Include:
+
+* Topology
+* Devices
+* Interfaces
+* IP addressing
+* Connectivity path
+
+Example:
+
+```
+Site A
+ |
+WAN / DCI
+ |
+Site B
 ```
 
-## Examples
+---
 
-### Example 1: Read a Page
-**User**: "Read my Notion page about project roadmap"
-**Agent Action**:
-1. Search for page titled "project roadmap"
-2. Retrieve page content
-3. Present formatted content to user
+## Validation
 
-### Example 2: Create a Page
-**User**: "Create a meeting notes page for today's standup"
-**Agent Action**:
-1. Create page with title "Meeting Notes - [date] - Standup"
-2. Add template blocks: attendees, agenda, notes, action items
-3. Return page link
+Always document:
 
-### Example 3: Query Database
-**User**: "Show me all tasks with status 'In Progress' from my project board"
-**Agent Action**:
-1. Query project board database
-2. Filter by status = "In Progress"
-3. Return formatted task list
+* Expected result
+* Actual result
+* Measurement method
+* Evidence collected
 
-## Constraints
+Examples:
 
-- Requires valid Notion API token (configured in platform settings)
-- Notion API rate limits apply (3 requests per second)
-- Database queries limited to 100 results per request
-- File uploads must be under 5MB
-- Rich text blocks have a maximum of 2000 characters
+Tools:
 
-## Platform-Specific Notes
+* ping
+* traceroute
+* iperf3
+* Wireshark
+* SNMP
+* CLI outputs
 
-- **Open WebUI**: Configure via `Settings > Integrations > Notion`
-- **MCP**: Use the `notion-mcp-server` adapter
-- **OpenAI**: Pass Notion token via environment variable `NOTION_API_KEY`
-- **Claude**: Supports direct Notion API calls via tool use
+---
+
+# Task Status Management
+
+Use consistent states:
+
+| Status      | Meaning                  |
+| ----------- | ------------------------ |
+| Inbox       | Newly captured item      |
+| To Do       | Planned work             |
+| In Progress | Currently being executed |
+| Blocked     | Waiting for dependency   |
+| Review      | Pending validation       |
+| Done        | Completed                |
+| Archived    | Historical reference     |
+
+---
+
+# Knowledge Capture
+
+When discovering reusable knowledge:
+
+Create documentation instead of leaving information inside tasks.
+
+Examples:
+
+Convert:
+
+```
+Troubleshooting steps discovered during incident
+```
+
+Into:
+
+```
+KB — Troubleshooting High Packet Loss on WAN Links
+```
+
+---
+
+# Decision Records
+
+For important decisions:
+
+Create:
+
+```
+ADR — Architecture Decision Record
+```
+
+Structure:
+
+```
+# Decision
+
+## Context
+
+## Options Considered
+
+## Decision Made
+
+## Reason
+
+## Impact
+
+## Follow-up Actions
+```
+
+---
+
+# Change Management
+
+For configuration changes:
+
+Document:
+
+* Current state
+* Proposed state
+* Change steps
+* Validation
+* Rollback
+
+Example:
+
+```
+Before:
+Interface MTU 1500
+
+Change:
+Set MTU 9000
+
+After:
+Verify jumbo frame support using ping -f
+```
+
+---
+
+# Avoid
+
+Do not:
+
+* Create duplicate pages without checking
+* Create vague task titles
+* Store important decisions only in chat
+* Create tasks without context
+* Remove historical information
+* Overwrite completed records without preserving history
+
+---
+
+# Agent Behaviour
+
+When receiving a request:
+
+1. Identify intent:
+
+   * Task creation
+   * Documentation
+   * Search
+   * Update
+   * Knowledge capture
+
+2. Search existing Notion records.
+
+3. Apply correct structure.
+
+4. Create or update content.
+
+5. Confirm:
+
+   * What was created
+   * Location
+   * Status
+   * Next action
+
+---
+
+# Example Task Template
+
+```
+Task:
+MOP — Network Performance Validation Test
+
+Status:
+To Do
+
+What:
+Perform network performance validation.
+
+Why:
+Confirm service readiness.
+
+Where:
+Production network environment.
+
+When:
+Scheduled maintenance window.
+
+How:
+1. Run baseline tests.
+2. Capture traffic.
+3. Validate results.
+4. Document findings.
+
+Evidence:
+- Test results
+- Screenshots
+- Logs
+
+Result:
+Pending execution.
+```
