@@ -1,0 +1,34 @@
+# Skill Metadata Template
+# Copy this to skills/<domain>/<skill-name>/metadata.yaml
+
+domain: "<domain>"
+name: "<skill-name>"
+version: "1.0.0"
+author: "<your-name>"
+description: "Brief description"
+
+# 5W sections present
+what: true
+why: true
+when: true
+where: true
+how: true
+
+# Files
+files:
+  - SKILL.md
+  - metadata.yaml
+  - examples/
+
+# Platforms
+platforms:
+  - openwebui
+  - mcp
+  - openai
+  - claude
+
+# Dependencies (other skills this skill uses)
+depends_on: []
+
+# Status
+status: active
